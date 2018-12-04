@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Tests" verbose="5">
+  <test name="test_fife">
+    <parameter name="siteUrl" value="file:///home/viktor/java-qa-test.html"/>
+    <parameter name="login" value="test@protei.ru"/>
+    <parameter name="password" value="test"/>
+    <classes>
+      <class name="ru.comp.LoginTest"/>
+    </classes>
+  </test>
+</suite>
