@@ -5,7 +5,10 @@
     <parameter name="siteUrl" value="file:///home/viktor/java-qa-test.html"/>
     <parameter name="login" value="test@protei.ru"/>
     <parameter name="password" value="test"/>
+    <parameter name="invalidEmail1" value="email"/>
+    <parameter name="invalidEmail2" value="email@mail"/>
     <classes>
+      <class name="ru.comp.FormTest"/>
       <class name="ru.comp.LoginTest"/>
     </classes>
   </test>

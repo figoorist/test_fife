@@ -23,4 +23,6 @@ public abstract class Page {
   public String getTitle() {
     return driver.getTitle();
   }
+
+  public abstract void clearForm();
 }
