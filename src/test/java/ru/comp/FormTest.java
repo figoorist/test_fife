@@ -58,22 +58,37 @@ public class FormTest extends TestNgTestBase {
     }
 
     @Test
-    public void testAddItem() throws InterruptedException {
-        formPage.getEmailField().sendKeys("test@test.test");
-        formPage.getNameField().sendKeys("Vitya");
-        formPage.setSexSelect("Мужской");
+    public void testAddItem1() {
+        formPage.fillTextForm("test@test.test", "Vitya", "Мужской");
         formPage.submit();
         formPage.confirm();
 
-        ArrayList<String> row = new ArrayList<String>() {{
+        table.add(new ArrayList<String>() {{
             add("test@test.test");
             add("Vitya");
             add("Мужской");
             add("Нет");
             add("");
-        }};
-        table.add(row);
+        }});
+        Assert.assertTrue(formPage.verifyTable(table));
+    }
 
+    @Test
+    public void testAddItem2() {
+        formPage.fillTextForm("test2@test.test", "Masha", "Женский");
+        formPage.getCheckboxByNumber(1).click();
+        formPage.getRadioByNumber(3).click();
+        formPage.submit();
+        formPage.confirm();
+
+        table.clear();
+        table.add(new ArrayList<String>() {{
+            add("test2@test.test");
+            add("Masha");
+            add("Женский");
+            add("1.1");
+            add("2.3");
+        }});
         Assert.assertTrue(formPage.verifyTable(table));
     }
 }

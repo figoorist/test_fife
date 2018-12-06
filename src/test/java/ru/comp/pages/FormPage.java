@@ -3,12 +3,9 @@ package ru.comp.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class FormPage extends Page {
     /**
@@ -85,6 +82,11 @@ public class FormPage extends Page {
         return driver.findElement(By.id(validationErrors.get(type)));
     }
 
+    /**
+     * Проверить значения в полях таблицы
+     * @param table
+     * @return
+     */
     public boolean verifyTable(ArrayList<ArrayList<String>> table) {
         Boolean result = true;
         Integer rowsCount = driver.findElements(By.tagName("tr")).size() - 1;
@@ -95,12 +97,29 @@ public class FormPage extends Page {
                                 .equals(table.get(i-1).get(j-1))){
                     result = false;
                 }
-            }//*[@id="dataTable"]/tbody/tr[1]/td[1]
+            }
         }
         return result;
     }
 
+    /**
+     * Подтвердить добавление в модальном окне
+     */
     public void confirm() {
         driver.findElement(By.xpath("//button[contains(text(), 'Ok')]")).click();
+    }
+
+    /**
+     * Заполнить текстовые поля формы
+     * @param email
+     * @param name
+     * @param sex
+     */
+    public void fillTextForm(String email, String name, String sex){
+        getEmailField().clear();
+        getEmailField().sendKeys(email);
+        getNameField().clear();
+        getNameField().sendKeys(name);
+        setSexSelect(sex);
     }
 }
